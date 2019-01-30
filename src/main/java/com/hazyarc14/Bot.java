@@ -78,7 +78,7 @@ public class Bot extends ListenerAdapter {
                 event.getMessage().delete().queue();
                 guild.getDefaultChannel().sendMessage("```" +
                         "Audio Triggers:\n" +
-//                        "!arams\n" +
+                        "!huuu\n" +
                         "```")
                         .queue();
 
@@ -86,11 +86,11 @@ public class Bot extends ListenerAdapter {
 
             if (voiceChannel != null) {
 
-//                if ("!arams".equalsIgnoreCase(command[0])) {
-//                    log.info("User: " + event.getAuthor().getName() + " Command: !arams");
-//                    event.getMessage().delete().queue();
-//                    loadAndPlay(event.getTextChannel(), voiceChannel, "https://raw.githubusercontent.com/HazyArc14/CollinBot/master/src/main/resources/audio/arams.mp3");
-//                }
+                if ("!huuu".equalsIgnoreCase(command[0])) {
+                    log.info("User: " + event.getAuthor().getName() + " Command: !huuu");
+                    event.getMessage().delete().queue();
+                    loadAndPlay(event.getTextChannel(), voiceChannel, "https://raw.githubusercontent.com/HazyArc14/RichardBot/master/src/main/resources/audio/huuu.mp3");
+                }
                 
                 if ("~play".equals(command[0]) && command.length == 2) {
                     log.info("User: " + event.getAuthor().getName() + " Command: ~play");

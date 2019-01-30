@@ -1,0 +1,30 @@
+plugins {
+    id'java'
+    id'application'
+    id'com.github.johnrengelman.shadow' version '2.0.1'
+}
+
+mainClassName = 'com.hazyarc14.Bot'
+
+group 'com.hazyarc14'
+version '1.0.0'
+
+def jdaVersion = '3.8.1_445'
+def lavaPlayerVersion = '1.3.10'
+
+sourceCompatibility = 1.8
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+    compile "net.dv8tion:JDA:$jdaVersion"
+    compile "com.sedmelluq:lavaplayer:$lavaPlayerVersion"
+    runtime "ch.qos.logback:logback-classic:1.2.3"
+}
+
+compileJava.options.encoding = 'UTF-8'
+
+task stage(dependsOn: ['shadowJar', 'clean'])
+shadowJar.mustRunAfter clean

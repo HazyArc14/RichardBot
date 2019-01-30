@@ -1,0 +1,1 @@
+worker: java $JAVA_OPTS -Dserver.port=$PORT -jar build/libs/RichardBot-1.0.0-all.jar

@@ -78,6 +78,7 @@ public class Bot extends ListenerAdapter {
                 event.getMessage().delete().queue();
                 guild.getDefaultChannel().sendMessage("```" +
                         "Audio Triggers:\n" +
+                        "!doIt\n" +
                         "!huuu\n" +
                         "```")
                         .queue();
@@ -86,6 +87,11 @@ public class Bot extends ListenerAdapter {
 
             if (voiceChannel != null) {
 
+                if ("!doIt".equalsIgnoreCase(command[0])) {
+                    log.info("User: " + event.getAuthor().getName() + " Command: !doIt");
+                    event.getMessage().delete().queue();
+                    loadAndPlay(event.getTextChannel(), voiceChannel, "https://raw.githubusercontent.com/HazyArc14/RichardBot/master/src/main/resources/audio/doIt.mp3");
+                }
                 if ("!huuu".equalsIgnoreCase(command[0])) {
                     log.info("User: " + event.getAuthor().getName() + " Command: !huuu");
                     event.getMessage().delete().queue();

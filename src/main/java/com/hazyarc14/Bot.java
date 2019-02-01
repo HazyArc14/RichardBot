@@ -81,6 +81,7 @@ public class Bot extends ListenerAdapter {
                         "!doIt\n" +
                         "!hello\n" +
                         "!huuu\n" +
+                        "!letsGo\n" +
                         "```")
                         .queue();
 
@@ -102,6 +103,11 @@ public class Bot extends ListenerAdapter {
                     log.info("User: " + event.getAuthor().getName() + " Command: !huuu");
                     event.getMessage().delete().queue();
                     loadAndPlay(event.getTextChannel(), voiceChannel, "https://raw.githubusercontent.com/HazyArc14/RichardBot/master/src/main/resources/audio/huuu.mp3");
+                }
+                if ("!letsGo".equalsIgnoreCase(command[0])) {
+                    log.info("User: " + event.getAuthor().getName() + " Command: !letsGo");
+                    event.getMessage().delete().queue();
+                    loadAndPlay(event.getTextChannel(), voiceChannel, "https://raw.githubusercontent.com/HazyArc14/RichardBot/master/src/main/resources/audio/letsGo.mp3");
                 }
                 
                 if ("~play".equals(command[0]) && command.length == 2) {

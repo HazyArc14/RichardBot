@@ -115,18 +115,21 @@ public class Bot extends ListenerAdapter {
                     event.getMessage().delete().queue();
                     loadAndPlay(event.getTextChannel(), voiceChannel, "https://raw.githubusercontent.com/HazyArc14/RichardBot/master/src/main/resources/audio/yourMomAHo.mp3");
                 }
-                
-                if ("~play".equals(command[0]) && command.length == 2) {
-                    log.info("User: " + event.getAuthor().getName() + " Command: ~play");
-                    event.getMessage().delete().queue();
-                    loadAndPlay(event.getTextChannel(), voiceChannel, command[1]);
-                } else if ("~skip".equals(command[0])) {
-                    log.info("User: " + event.getAuthor().getName() + " Command: ~skip");
-                    event.getMessage().delete().queue();
-                    skipTrack(event.getTextChannel());
-                } else if ("~leave".equals(command[0])) {
-                    guild.getAudioManager().closeAudioConnection();
+
+                if (event.getAuthor().getIdLong() == 148630426548699136L) {
+                    if ("~play".equals(command[0]) && command.length == 2) {
+                        log.info("User: " + event.getAuthor().getName() + " Command: ~play");
+                        event.getMessage().delete().queue();
+                        loadAndPlay(event.getTextChannel(), voiceChannel, command[1]);
+                    } else if ("~skip".equals(command[0])) {
+                        log.info("User: " + event.getAuthor().getName() + " Command: ~skip");
+                        event.getMessage().delete().queue();
+                        skipTrack(event.getTextChannel());
+                    } else if ("~leave".equals(command[0])) {
+                        guild.getAudioManager().closeAudioConnection();
+                    }
                 }
+
             }
         }
 

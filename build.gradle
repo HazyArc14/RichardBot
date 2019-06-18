@@ -9,8 +9,8 @@ mainClassName = 'com.hazyarc14.Bot'
 group 'com.hazyarc14'
 version '1.0.0'
 
-def jdaVersion = '3.8.1_445'
-def lavaPlayerVersion = '1.3.10'
+def jdaVersion = '3.8.3_463'
+def lavaPlayerVersion = '1.3.17'
 
 sourceCompatibility = 1.8
 

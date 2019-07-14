@@ -15,9 +15,12 @@ import net.dv8tion.jda.core.entities.VoiceChannel;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.core.hooks.ListenerAdapter;
 import net.dv8tion.jda.core.managers.AudioManager;
+import org.apache.commons.io.FileUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.File;
+import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -56,6 +59,10 @@ public class Bot extends ListenerAdapter {
 
     @Override
     public void onMessageReceived(MessageReceivedEvent event) {
+
+        String githubAudioBaseURL = "https://raw.githubusercontent.com/HazyArc14/CollinBot/master/src/main/resources/audio/";
+        String githubImageBaseURL = "https://raw.githubusercontent.com/HazyArc14/CollinBot/master/src/main/resources/images/";
+
         String[] command = event.getMessage().getContentRaw().split(" ", 2);
         Guild guild = event.getGuild();
         VoiceChannel voiceChannel = null;
@@ -81,16 +88,32 @@ public class Bot extends ListenerAdapter {
             }
 
             if ("!help".equalsIgnoreCase(command[0])) {
+
                 event.getMessage().delete().queue();
-                guild.getDefaultChannel().sendMessage("```" +
+
+                String helpMessage = "```" +
                         "Audio Triggers:\n" +
                         "!doIt\n" +
                         "!hello\n" +
                         "!huuu\n" +
                         "!letsGo\n" +
                         "!yourMomAHo\n" +
-                        "```")
-                        .queue();
+                        "\nEmotes:\n" +
+                        ";coggers;\n" +
+                        ";crabPls;\n" +
+                        ";dance;\n" +
+                        ";pepeD;\n" +
+                        ";pepeDance;\n" +
+                        ";pepegaPls;\n" +
+                        ";pepeJam;\n" +
+                        ";pepoSabers;\n" +
+                        ";ppHop;\n" +
+                        ";rainbowWeeb;\n" +
+                        ";schubertWalk;\n" +
+                        ";triKool;\n" +
+                        "```";
+
+                event.getAuthor().openPrivateChannel().queue((channel) -> channel.sendMessage(helpMessage).queue());
 
             }
 
@@ -99,27 +122,27 @@ public class Bot extends ListenerAdapter {
                 if ("!doIt".equalsIgnoreCase(command[0])) {
                     log.info("User: " + event.getAuthor().getName() + " Command: !doIt");
                     event.getMessage().delete().queue();
-                    loadAndPlay(event.getTextChannel(), voiceChannel, "https://raw.githubusercontent.com/HazyArc14/RichardBot/master/src/main/resources/audio/doIt.mp3");
+                    loadAndPlay(event.getTextChannel(), voiceChannel, githubAudioBaseURL + "doIt.mp3");
                 }
                 if ("!hello".equalsIgnoreCase(command[0])) {
                     log.info("User: " + event.getAuthor().getName() + " Command: !hello");
                     event.getMessage().delete().queue();
-                    loadAndPlay(event.getTextChannel(), voiceChannel, "https://raw.githubusercontent.com/HazyArc14/RichardBot/master/src/main/resources/audio/hello.mp3");
+                    loadAndPlay(event.getTextChannel(), voiceChannel, githubAudioBaseURL + "hello.mp3");
                 }
                 if ("!huuu".equalsIgnoreCase(command[0])) {
                     log.info("User: " + event.getAuthor().getName() + " Command: !huuu");
                     event.getMessage().delete().queue();
-                    loadAndPlay(event.getTextChannel(), voiceChannel, "https://raw.githubusercontent.com/HazyArc14/RichardBot/master/src/main/resources/audio/huuu.mp3");
+                    loadAndPlay(event.getTextChannel(), voiceChannel, githubAudioBaseURL + "huuu.mp3");
                 }
                 if ("!letsGo".equalsIgnoreCase(command[0])) {
                     log.info("User: " + event.getAuthor().getName() + " Command: !letsGo");
                     event.getMessage().delete().queue();
-                    loadAndPlay(event.getTextChannel(), voiceChannel, "https://raw.githubusercontent.com/HazyArc14/RichardBot/master/src/main/resources/audio/letsGo.mp3");
+                    loadAndPlay(event.getTextChannel(), voiceChannel, githubAudioBaseURL + "letsGo.mp3");
                 }
                 if ("!yourMomAHo".equalsIgnoreCase(command[0])) {
                     log.info("User: " + event.getAuthor().getName() + " Command: !yourMomAHo");
                     event.getMessage().delete().queue();
-                    loadAndPlay(event.getTextChannel(), voiceChannel, "https://raw.githubusercontent.com/HazyArc14/RichardBot/master/src/main/resources/audio/yourMomAHo.mp3");
+                    loadAndPlay(event.getTextChannel(), voiceChannel, githubAudioBaseURL + "yourMomAHo.mp3");
                 }
 
                 if (event.getAuthor().getIdLong() == 148630426548699136L) {
@@ -136,6 +159,67 @@ public class Bot extends ListenerAdapter {
                     }
                 }
 
+            }
+
+            if (";coggers;".equalsIgnoreCase(command[0])) {
+                log.info("User: " + event.getAuthor().getName() + " Command: ;coggers;");
+                event.getMessage().delete().queue();
+                sendEmote(guild.getDefaultChannel(), "pepoSabers", githubImageBaseURL + "coggers.gif");
+            }
+            if (";crabPls;".equalsIgnoreCase(command[0])) {
+                log.info("User: " + event.getAuthor().getName() + " Command: ;crabPls;");
+                event.getMessage().delete().queue();
+                sendEmote(guild.getDefaultChannel(), "pepoSabers", githubImageBaseURL + "crabPls.gif");
+            }
+            if (";dance;".equalsIgnoreCase(command[0])) {
+                log.info("User: " + event.getAuthor().getName() + " Command: ;dance;");
+                event.getMessage().delete().queue();
+                sendEmote(guild.getDefaultChannel(), "pepoSabers", githubImageBaseURL + "dance.gif");
+            }
+            if (";pepeD;".equalsIgnoreCase(command[0])) {
+                log.info("User: " + event.getAuthor().getName() + " Command: ;pepeD;");
+                event.getMessage().delete().queue();
+                sendEmote(guild.getDefaultChannel(), "pepoSabers", githubImageBaseURL + "pepeD.gif");
+            }
+            if (";pepeDance;".equalsIgnoreCase(command[0])) {
+                log.info("User: " + event.getAuthor().getName() + " Command: ;pepeDance;");
+                event.getMessage().delete().queue();
+                sendEmote(guild.getDefaultChannel(), "pepoSabers", githubImageBaseURL + "pepeDance.gif");
+            }
+            if (";pepegaPls;".equalsIgnoreCase(command[0])) {
+                log.info("User: " + event.getAuthor().getName() + " Command: ;pepegaPls;");
+                event.getMessage().delete().queue();
+                sendEmote(guild.getDefaultChannel(), "pepoSabers", githubImageBaseURL + "pepegaPls.gif");
+            }
+            if (";pepeJam;".equalsIgnoreCase(command[0])) {
+                log.info("User: " + event.getAuthor().getName() + " Command: ;pepeJam;");
+                event.getMessage().delete().queue();
+                sendEmote(guild.getDefaultChannel(), "pepoSabers", githubImageBaseURL + "pepeJam.gif");
+            }
+            if (";pepoSabers;".equalsIgnoreCase(command[0])) {
+                log.info("User: " + event.getAuthor().getName() + " Command: ;pepoSabers;");
+                event.getMessage().delete().queue();
+                sendEmote(guild.getDefaultChannel(), "pepoSabers", githubImageBaseURL + "pepoSabers.gif");
+            }
+            if (";ppHop;".equalsIgnoreCase(command[0])) {
+                log.info("User: " + event.getAuthor().getName() + " Command: ;ppHop;");
+                event.getMessage().delete().queue();
+                sendEmote(guild.getDefaultChannel(), "pepoSabers", githubImageBaseURL + "ppHop.gif");
+            }
+            if (";rainbowWeeb;".equalsIgnoreCase(command[0])) {
+                log.info("User: " + event.getAuthor().getName() + " Command: ;rainbowWeeb;");
+                event.getMessage().delete().queue();
+                sendEmote(guild.getDefaultChannel(), "pepoSabers", githubImageBaseURL + "rainbowWeeb.gif");
+            }
+            if (";schubertWalk;".equalsIgnoreCase(command[0])) {
+                log.info("User: " + event.getAuthor().getName() + " Command: ;schubertWalk;");
+                event.getMessage().delete().queue();
+                sendEmote(guild.getDefaultChannel(), "pepoSabers", githubImageBaseURL + "schubertWalk.gif");
+            }
+            if (";triKool;".equalsIgnoreCase(command[0])) {
+                log.info("User: " + event.getAuthor().getName() + " Command: ;triKool;");
+                event.getMessage().delete().queue();
+                sendEmote(guild.getDefaultChannel(), "pepoSabers", githubImageBaseURL + "triKool.gif");
             }
         }
 
@@ -194,5 +278,17 @@ public class Bot extends ListenerAdapter {
         if (!audioManager.isConnected() && !audioManager.isAttemptingToConnect()) {
             audioManager.openAudioConnection(voiceChannel);
         }
+    }
+
+    private static void sendEmote(TextChannel channel, String emoteName, String emoteUrl) {
+
+        File gif = new File(emoteName + ".gif");
+        try {
+            FileUtils.copyURLToFile(new URL(emoteUrl), gif);
+            channel.sendFile(gif).queue();
+        } catch (Exception e) {
+            log.error("Error: ", e);
+        }
+
     }
 }

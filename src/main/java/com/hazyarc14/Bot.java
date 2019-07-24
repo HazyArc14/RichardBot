@@ -60,8 +60,8 @@ public class Bot extends ListenerAdapter {
     @Override
     public void onMessageReceived(MessageReceivedEvent event) {
 
-        String githubAudioBaseURL = "https://raw.githubusercontent.com/HazyArc14/CollinBot/master/src/main/resources/audio/";
-        String githubImageBaseURL = "https://raw.githubusercontent.com/HazyArc14/CollinBot/master/src/main/resources/images/";
+        String githubAudioBaseURL = "https://raw.githubusercontent.com/HazyArc14/RichardBot/master/src/main/resources/audio/";
+        String githubImageBaseURL = "https://raw.githubusercontent.com/HazyArc14/RichardBot/master/src/main/resources/images/";
 
         String[] command = event.getMessage().getContentRaw().split(" ", 2);
         Guild guild = event.getGuild();
